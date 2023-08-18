@@ -1,0 +1,221 @@
+.Home_main {
+    min-height: 100vh;
+    padding: 2rem 0;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+   height: auto;
+}
+.css-1uybl6b {
+    width: 100%;
+    -webkit-margin-start: auto;
+    margin-inline-start: auto;
+    -webkit-margin-end: auto;
+    margin-inline-end: auto;
+    max-width: 100%;
+    -webkit-padding-start: 1rem;
+    padding-inline-start: 1rem;
+    -webkit-padding-end: 1rem;
+    padding-inline-end: 1rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    background: white;
+    color: #262626;
+    padding-top: 10px;
+}
+.Score{
+display: flex;
+margin-bottom: 10px;
+
+}
+.scorebutton {
+    margin: auto;
+    /* margin-left: auto; */
+   color: white;
+    margin-right: auto;
+    padding: 5px;
+    border-radius: 4px;
+}
+.css-14gl5v3 {
+    max-width: 32rem;
+    border-width: 3px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    border-color: rgb(240, 240, 246);
+    box-shadow:  0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    margin-top: 70px;
+}
+.css-oldy3w {
+    background-color: rgb(53, 54, 63);
+    color: white;
+    height: auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    border-radius: 10px;
+    padding: 30px;
+}
+.css-cu0uac {
+    background-color: white;
+    color: black;
+    height: auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    padding-top: 15px;
+}
+
+.css-q0xr6t{
+    max-width: 32rem;
+    border-width: 1px;
+    border-radius: 10px;
+  
+    width: 100%;
+    border-color: black;
+    box-shadow:  0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.css-1mygs9k {
+    color: white;
+    height: auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    padding: 20px;
+}
+
+.css-19nn44a {
+    padding: 1.5rem;
+    background-color: white;
+}
+.css-1xa84ef {
+    list-style-type: none;
+}
+li{
+    margin-top: 11px;
+    border-radius: 13px;
+    padding: 8px;
+}
+
+.css-ffdj00 {
+    margin-top: 46px;
+    max-width: 32rem;
+    border-width: 3px;
+    border-radius: 2px;
+    width: 100%;
+    border-color: rgb(240, 240, 246);
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.css-d755lw {
+    font-size: 30px;
+    font-weight: 700;
+}
+.css-vg5ilo {
+    max-width: 32rem;
+    border-width: 3px;
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 100%;
+    border-color: rgb(51, 107, 255);
+    background: rgb(51, 107, 255);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 40px;
+    margin-top: 70px;
+}
+
+.css-qdfofv{
+    list-style-type: none;
+    margin-top: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.css-dl50kq {
+    border-radius: 10px;
+    font-size: 20px;
+}
+.css-5atgzs {
+    width: 1em;
+    height: 1em;
+    display: inline;
+    line-height: 1em;
+    flex-shrink: 0;
+    color: var(--chakra-colors-green-500);
+    margin-inline-end: 0.5rem;
+    vertical-align: text-bottom;
+}
+.css-5atgzs {
+    width: 1em;
+    height: 1em;
+    display: inline;
+    line-height: 1em;
+    flex-shrink: 0;
+    color: #38A169;
+    margin-inline-end: 0.5rem;
+    vertical-align: text-bottom;
+}
+
+
+
+.css-ipd9fp {
+    max-width: 32rem;
+    border-width: 3px;
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 100%;
+    border-color: rgb(240, 240, 246);
+    text-align: center;
+    padding: 20px;
+   
+    box-shadow: 0 6px 16px 0 rgb(113 107 107 / 20%);
+
+}
+.css-d755lw {
+    font-size: 30px;
+    font-weight: 700;
+}
+.css-18fgjcj {
+    max-width: 32rem;
+    border-width: 3px;
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 100%;
+    border-color: rgb(240, 240, 246);
+    text-align: center;
+    padding: 20px;
+   
+    margin-top: 30px;
+    box-shadow: 0 6px 16px 0 rgb(113 107 107 / 20%);
+
+    border-color: #E2E8F0 !important;
+}

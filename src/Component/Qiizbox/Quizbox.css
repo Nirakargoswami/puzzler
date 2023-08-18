@@ -1,0 +1,326 @@
+.Mark {
+    border-radius: 30%;
+
+    padding: 10px;
+    background-color: #FED7D7;
+}
+
+.css-vr61ey {
+    display: grid;
+    gap: 35px;
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+}
+
+.css-sdqkp0 {
+    border: 3px solid rgb(7, 222, 182);
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: azure;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.Photo {
+    height: 152px;
+    width: 137px;
+    border-radius: 50%;
+
+}
+
+.Marks {
+    border-radius: 5%;
+
+    padding: 5px;
+    background-color: #FED7D7;
+}
+
+.Box {
+    margin: 0px;
+    padding: 0px;
+}
+
+.Mainfor {
+    font-size: 20px;
+}
+
+.Mb {
+    margin-bottom: 10px;
+}
+
+.MT {
+    margin-top: 15px !important;
+}
+.MT2{
+    margin-top: 30px;
+}
+.Photos {
+    height: 179px;
+    width: 198px;
+    border-radius: 50%;
+}
+
+.Gmestabox {
+    max-width: var(32rem);
+    border-width: 3px;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    border-color: rgb(240, 240, 246);
+    margin-top: 20px;
+    padding: 15px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    ;
+
+}
+
+.css-cu0uac {
+    background-color: white;
+    color: black;
+    height: auto;
+    text-align: center;
+    padding: 1rem;
+    font-size: 22px;
+    font-weight: 900;
+    padding-top: 15px;
+    border-color: rgb(240, 240, 246);
+    border-width: 2px;
+}
+
+
+
+.css-1u1dnir {
+    width: 100%;
+    min-width: 0px;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    position: relative;
+    appearance: none;
+    transition-property: var(--chakra-transition-property-common);
+    transition-duration: var(--chakra-transition-duration-normal);
+    font-size: var(--chakra-fontSizes-md);
+    padding: 5px;
+
+    height: var(--chakra-sizes-10);
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-image: initial;
+    border-color: rgb(229, 62, 62);
+    background: inherit;
+    margin-bottom: 15px;
+}
+
+.css-1u1dnir[aria-invalid="true"],
+.css-1u1dnir[data-invalid] {
+    border-color: rgb(229, 62, 62);
+    box-shadow: rgb(229, 62, 62) 0px 0px 0px 1px;
+}
+
+.button {
+    width: -webkit-fill-available;
+    background-color: rgb(254, 44, 84);
+}
+
+.Home_container__bCOhY {
+    padding: 0 0.1rem;
+}
+.css-1xsveqn {
+    display: grid;
+    border: 3px solid rgb(-16, 151, 194);
+    border-radius: 10px;
+    width: 287.5px;
+    margin-top: 50px;
+}
+
+
+.Home_main__nLjiQ {
+    min-height: 100vh;
+    padding: 2rem 0;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.css-1xsveqn {
+    display: grid;
+    border: 3px solid rgb(-16, 151, 194);
+    border-radius: 10px;
+    width: 333.5px;
+
+}
+.css-15hb4qy {
+    position: relative;
+    top: -30px;
+    right: -15px;
+    border: 3px solid rgb(32, 202, 97);
+    width: fit-content;
+    border-radius: 7px;
+    
+    background-color: rgb(32, 202, 97);
+    color: white;
+    font-weight: 800;
+}
+
+.css-r4358i {
+    padding: 1.25rem;
+    
+}
+.Ma{
+    text-align: center;
+margin:0px auto 0px auto !important;
+}
+.MB{
+    margin-bottom: 10px !important;
+}
+.css-1gxocc {
+    width: 100%;
+    min-width: 0px;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    position: relative;
+    appearance: none;
+    padding-inline-start:1rem;
+    padding-inline-end: 1rem;
+    vertical-align: top;
+    height: auto;
+    overflow: auto;
+}
+textarea {
+    resize: none;
+  }
+.Inputs{
+        resize: none;
+        padding: 12px 19px;
+        text-align: start;
+        box-sizing: border-box;
+        font-size: 19px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        font-weight: 700;
+        line-height: 1.2em;
+        background: rgb(240, 240, 246);
+        height: 95px;
+        width: 100%;
+
+    
+}
+
+.Input{
+    width: 100%;
+
+    resize: none;
+    padding: 12px 24px;
+    box-sizing: border-box;
+    font-size: 19px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: 700;
+    line-height: 1.2em;
+    background: rgb(240, 240, 246);
+    height: auto;
+
+
+}
+.css-5k76gu {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 15px;
+    gap: 5px;
+}
+.css-p40gnj {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: top;
+    cursor: pointer;
+    position: relative;
+}
+.Cancle{
+    color: red;
+    cursor: pointer;
+}
+
+.SLect{
+    margin: 0px !important;
+}
+.Home_main__nLjiQ {
+    min-height: 100vh;
+    padding: 2rem 0;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    
+}
+
+.css-1e0mhkg {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 100%;
+    padding-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    inset: 0px;
+    height: auto;
+    background: var(--chakra-colors-white);
+    color: rgb(38, 38, 38);
+    padding-top: 10px;
+}
+
+.css-1x61a8 {
+    max-width: 32rem;
+    border-width: 3px;
+    border-radius: var(--chakra-radii-2xl);
+    overflow: hidden;
+    width: 100%;
+    border-color: rgb(240, 240, 246);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    ;
+    margin-bottom: 30px;
+}
+
+.css-19nn44a {
+    padding: 1rem;
+    background-color: var(--chakra-colors-white);
+}
+
+.Witdh {
+    width: 100%;
+}
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #383636; /* Blue */
+    border-radius: 50%;
+    animation: spinner 1.5s linear infinite;
+  }
+  
+  .spinner-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+  }
