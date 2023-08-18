@@ -81,7 +81,7 @@ const QuestionEditor = ({ data ,name}) => {
 
   const copyToClipboard = () => {
     const textArea = document.createElement('textarea');
-    textArea.value = `http://localhost:3000/quizpage/Anstpage/${id}`;
+    textArea.value = `https://mindpuzzlers.com/quizpage/Anstpage/${id}`;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');
@@ -89,7 +89,7 @@ const QuestionEditor = ({ data ,name}) => {
     setCopied(true);
   };
   const handleShareOnWhatsApp = () => {
-    const link = `http://localhost:3000/quizpage/Anstpage/${id}`; // Replace with your actual link
+    const link = `https://mindpuzzlers.com/quizpage/Anstpage/${id}`; // Replace with your actual link
 
     // Construct the WhatsApp URL
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(link)}`;
@@ -99,7 +99,7 @@ const QuestionEditor = ({ data ,name}) => {
   };
   const copyAndRedirect = async () => {
     try {
-      await navigator.clipboard.writeText(`http://localhost:3000/quizpage/Anstpage/${id}`);
+      await navigator.clipboard.writeText(`https://mindpuzzlers.com/quizpage/Anstpage/${id}`);
       window.location.href = "your-wp-app-link";
     } catch (error) {
       console.error("Error copying link: ", error);

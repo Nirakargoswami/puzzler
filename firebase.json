@@ -1,10 +1,6 @@
 {
   "hosting": {
-
-    "site": "quizmedia-mindpuzzlers",
-
-    "public": "y",
-   
+    "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -17,4 +13,5 @@
       }
     ]
   }
+ 
 }
