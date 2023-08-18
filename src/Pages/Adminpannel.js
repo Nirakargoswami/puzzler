@@ -43,13 +43,13 @@ const QuestionEditor = () => {
 
     ]
 
-    const Delettheimage = (index) =>{
+    const Delettheimage = (index) => {
 
- const newQuestions = [...questions];
-    newQuestions[index].question.image = null; // Set the image property to null
-    newQuestions[index].question.url = null; // Set the image URL to null
-    setQuestions(newQuestions);
-    Render()
+        const newQuestions = [...questions];
+        newQuestions[index].question.image = null; // Set the image property to null
+        newQuestions[index].question.url = null; // Set the image URL to null
+        setQuestions(newQuestions);
+        Render()
     }
     const Render = () => {
         return (
@@ -314,9 +314,9 @@ const QuestionEditor = () => {
                 if (quizDocSnapshot.exists()) {
                     // Update the quiz data
 
-console.log(quizDocRef)
+                    console.log(quizDocRef)
                     // Save the updated quiz data back to 'quizedata' collection
-                    await updateDoc(quizDocRef, {  data: quizData, name: quizName, Image: allquizdata.Image, quizeimgeurl: allquizdata.quizeimgeurl });
+                    await updateDoc(quizDocRef, { data: quizData, name: quizName, Image: allquizdata.Image, quizeimgeurl: allquizdata.quizeimgeurl });
 
                     console.log('Quiz data updated successfully.');
                 } else {
