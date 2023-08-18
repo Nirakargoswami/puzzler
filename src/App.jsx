@@ -6,7 +6,7 @@ import {
   Routes,
   Route,
   Link,
-  Form,
+  Form,d
 } from "react-router-dom";
 import NormalQuiz from "../src/Pages/NoramalQuiz"
 import AdminPanel from "../src/Pages/Adminpannel"
