@@ -179,7 +179,7 @@ const QuizApp = () => {
             </div>}
             {
                 gameOver &&
-                <>
+                <main className="Home_main">
                     <div className="css-vg5ilo">Your score: <br />
                         {score} out of {questionsArray.data.length}
                     </div>
@@ -193,7 +193,7 @@ const QuizApp = () => {
                             <Button style={{ backgroundColor: "#805AD5", with: "100%", marginTop: "5px", borderRadius: "10px" }} variant="contained" onClick={handleNextClick}>Get Started</Button>
                         </Link>
                     </div>
-                </>
+                </main>
 
 
             }
@@ -236,30 +236,30 @@ const QuizApp = () => {
                         </Link>
                     </div>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div class="css-ipd9fp">
-                        <p class="chakra-text css-d755lw">Top friends of {questionsArray && questionsArray.name}</p>
-                        <br />
-                        <div class="chakra-table__container css-zipzvv">
+                        <div class="css-ipd9fp">
+                            <p class="chakra-text css-d755lw">Top friends of {questionsArray && questionsArray.name}</p>
+                            <br />
+                            <div class="chakra-table__container css-zipzvv">
 
 
 
-                            {friendScores &&
+                                {friendScores &&
 
-                                FetchFriendScores()
+                                    FetchFriendScores()
 
-                            }
-
-
+                                }
 
 
+
+
+                            </div>
                         </div>
                     </div>
-                </div>
                 </main>
 
 
             }
-            {gameOver  &&
+            {gameOver &&
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <div class="css-ipd9fp">
                         <p class="chakra-text css-d755lw">Top friends of {questionsArray && questionsArray.name}</p>
@@ -307,7 +307,10 @@ const QuizApp = () => {
                     </div>
                     <div className="css-q0xr6t" style={{ backgroundColor: !color ? "#ff5722" : color }}>
                         <div className="css-1mygs9k ">
-                            <Typography variant="h6">{questionsArray.data[currentQuestionIndex].question}</Typography>
+                            <Typography variant="h6"> {questionsArray.data[currentQuestionIndex].question.replace(
+                                /\b(your|you|my|mine)\b/g,
+                                name || "your"
+                            )}</Typography>
 
                         </div>
                         <div className="css-19nn44a ">

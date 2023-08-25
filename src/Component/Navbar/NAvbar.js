@@ -30,31 +30,37 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       {/* <Toolbar /> */}
-      <div style={{margin:"20px",textAlign:"center",color:"rgb(255, 45, 85)"}}>
-        <Link style={{textDecoration:"none",color:"rgb(255, 45, 85)"}} to={"/"}> <h3>Quiz Media</h3> </Link>
-    
+      <div style={{ margin: "20px", textAlign: "center", color: "rgb(255, 45, 85)" }}>
+        <Link style={{ textDecoration: "none", color: "rgb(255, 45, 85)" }} to={"/"}> <h3>Quiz Media</h3> </Link>
+
       </div>
       <Divider />
 
       <List>
-        {['Media', 'Blog', 'Instagram', 'About Us'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+        {['Media', 'Blog',  'About Us'].map((text, index) => (
+          <Link style={{ textDecoration: "none", color: "black" }} to={`/${text}`}>
 
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />
       <List>
-        {['Privacy Policy', 'Tearms Of Use', 'Legal'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+        {['Privasy', 'Tearms Of Use', 'Legal'].map((text, index) => (
 
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+          <Link style={{ textDecoration: "none", color: "black" }} to={`/${text}`}>
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </div>
@@ -83,12 +89,12 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Link  style={{textDecoration:"none",color:"rgb(255, 45, 85)"}} to={"/"}>
-          <Typography variant="h6"  noWrap component="div">
-          Quiz Media
-          </Typography>
+          <Link style={{ textDecoration: "none", color: "rgb(255, 45, 85)" }} to={"/"}>
+            <Typography variant="h6" noWrap component="div">
+              Quiz Media
+            </Typography>
           </Link>
-         
+
         </Toolbar>
       </AppBar>
       {mobileOpen &&

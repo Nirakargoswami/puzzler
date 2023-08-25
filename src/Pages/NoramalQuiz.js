@@ -21,10 +21,11 @@ const NormalQuiz = () => {
     const [gameOver, setGameover] = useState(false)
     const [Start, setStart] = useState(false)
     const [name, setName] = useState()
+     const [names,setNames] = useState()
     const [Mainuser, setMainuser] = useState()
     const [color, setColor] = useState()
     const [open, setOpen] = useState(false);
-    const [remainingTime, setRemainingTime] = useState(30); // Initialize timer with 30 seconds
+    const [remainingTime, setRemainingTime] = useState(10); // Initialize timer with 30 seconds
     const [copied, setCopied] = useState(false);
     const params = useParams();
     const handleClickOpen = () => {
@@ -60,7 +61,7 @@ const NormalQuiz = () => {
         setOpen(false);
     };
 
-    const Color = ["#2979ff", "#ff5722", "#ffc400", "651fff", "#d500f9", "#e91e63", "#3d5afe", "#9c27b0"]
+    const Color = ["#2979ff", "#ff5722", "#bc186b", "651fff", "#d500f9", "#e91e63", "#3d5afe", "#9c27b0"]
 
     const randomNumberColor = () => {
 
@@ -101,7 +102,8 @@ const NormalQuiz = () => {
     useEffect(() => {
         if (remainingTime < 2 && Start) {
             console.log("remainingTime")
-            if (questionsArray[currentQuestionIndex].ans === selectedOption) {
+            console.log(selectedOption && questionsArray.qna[currentQuestionIndex].options[selectedOption].correct)
+            if (selectedOption && questionsArray.qna[currentQuestionIndex].options[selectedOption].correct === true) {
                 setScore(score + 1);
             }
             setSelectedOption(null)
@@ -111,56 +113,90 @@ const NormalQuiz = () => {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
     }, [remainingTime])
+
     useEffect(() => {
         handleEdit(params.quizname)
     }, [params.quizname])
 
     const handleEdit = async (name) => {
         try {
-            const quizDataRef = doc(db, "quizedata", name);
-            const quizDataSnapshot = await getDoc(quizDataRef);
-            if (quizDataSnapshot.exists()) {
-                const retrievedData = quizDataSnapshot.data();
-                console.log(retrievedData.data)
-                setquestionsArray(retrievedData.data);
-                console.log(retrievedData.data)
+            const apiUrl = `https://writers.explorethebuzz.com/api/quizzes/${name}`;
+            const queryParams = [
+                "fields[0]=name",
+                "populate[thumbnail][fields][0]=url",
+                "populate[qna][populate][media][fields]=url",
+                "populate[qna][populate][options][populate][media][fields]=url"
+            ];
 
-                setName(retrievedData.name)
-            } else {
-                console.log("Quiz data not found");
-                setSelectedQuizData(null);
-            }
+            const queryString = queryParams.join("&");
+            const fullUrl = `${apiUrl}?${queryString}`;
+
+            fetch(fullUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Process the retrieved data here
+                    setquestionsArray(data.data);
+                        
+                    setName(data.data.name)
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                });
+
+            // const quizDataRef = doc(db, "quizedata", name);
+            // const quizDataSnapshot = await getDoc(quizDataRef);
+            // if (quizDataSnapshot.exists()) {
+            //     const retrievedData = quizDataSnapshot.data();
+            //     console.log(retrievedData.data)
+            //     setquestionsArray(retrievedData.data);
+            //     console.log(retrievedData.data)
+
+            //     setName(retrievedData.name)
+            // } else {
+            //     console.log("Quiz data not found");
+            //     setSelectedQuizData(null);
+            // }
         } catch (error) {
             console.error('Error fetching quiz data:', error);
         }
     };
+
     const handleOptionClick = (optionIndex) => {
         setSelectedOption(optionIndex);
     };
 
+
     const handleNextClick = () => {
-
-
         randomNumberColor()
-        if ((questionsArray.length) === (currentQuestionIndex + 1)) {
-            if (questionsArray[currentQuestionIndex].ans === selectedOption) {
+        console.log((questionsArray.qna.length) === (currentQuestionIndex + 1))
+        if ((questionsArray.qna.length) === (currentQuestionIndex + 1)) {
+            if (questionsArray.qna
+            [currentQuestionIndex].options[selectedOption].correct
+                === true) {
                 setScore(score + 1);
             }
             setGameover(true)
+            console.log("log out")
             return
         }
-        if (questionsArray[currentQuestionIndex].ans === selectedOption) {
+        if (questionsArray.qna
+        [currentQuestionIndex].options[selectedOption].correct
+            === true) {
             setScore(score + 1);
         }
-        console.log(remainingTime)
+
         setSelectedOption(null)
         setRemainingTime(30)
         randomNumberColor()
-
-
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-
     };
+
+
     const copyToClipboard = () => {
         const textArea = document.createElement('textarea');
         textArea.value = `https://mindpuzzlers.com/NormalQuiz/${params.quizname}`
@@ -179,6 +215,7 @@ const NormalQuiz = () => {
         // Redirect to WhatsApp
         window.location.href = whatsappUrl;
     };
+    console.log(questionsArray)
     const progress = ((currentQuestionIndex + 1) / questionsArray && questionsArray.length) * 100;
 
     return (
@@ -190,9 +227,29 @@ const NormalQuiz = () => {
                 gameOver &&
                 <><main className='Home_main__nLjiQ '>
                     <div className="css-vg5ilo">Your score: <br />
-                        {score} out of {questionsArray.length}
+                        {score} out of {questionsArray.qna.length}
                     </div>
+                    <div className='css-1e0mhkg '>
+                        <div className='css-1x61a8'>
+                            <div className='css-cu0uac '>
+                                Your Quiz is ready!
+                                <br />
+                                Share your Quiz link with all your friends and see their results.
+                            </div>
+                            <div className='css-19nn44a'>
+                                <input className='Input' value={`https://mindpuzzlers.com/NormalQuiz/${params.quizname}`} />
 
+                                <Button className='Witdh' style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Copy Link</Button>
+                                {copied && <p>Copied to clipboard!</p>}
+                                <Button className='Witdh' style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={handleShareOnWhatsApp}>Send Quiz In whatsapp</Button>
+                                <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Add In Instagram Bio</Button>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
                     <div className="css-ffdj00">
                         <p class="chakra-text css-d755lw" style={{ margin: "0px" }}>Create your Quiz</p>
                         <br />
@@ -202,31 +259,11 @@ const NormalQuiz = () => {
                             <Button style={{ backgroundColor: "#805AD5", with: "100%", marginTop: "5px", borderRadius: "10px" }} variant="contained" onClick={handleNextClick}>Get Started</Button>
                         </Link>
                     </div>
-                    
-                        <div className='css-1e0mhkg '>
-                            <div className='css-1x61a8'>
-                                <div className='css-cu0uac '>
-                                    Your Quiz is ready!
-                                    <br />
-                                    Share your Quiz link with all your friends and see their results.
-                                </div>
-                                <div className='css-19nn44a'>
-                                    <input className='Input' value={`https://mindpuzzlers.com/NormalQuiz/${params.quizname}`} />
-
-                                    <Button className='Witdh' style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Copy Link</Button>
-                                    {copied && <p>Copied to clipboard!</p>}
-                                    <Button className='Witdh' style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={handleShareOnWhatsApp}>Send Quiz In whatsapp</Button>
-                                    <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Add In Instagram Bio</Button>
 
 
-                                </div>
-
-                            </div>
-
-                        </div>
 
 
-                    </main>
+                </main>
                 </>
 
 
@@ -234,11 +271,26 @@ const NormalQuiz = () => {
             {!Start && !open &&
                 <main className="Home_main">
 
-                    <div>
+                    <div className="NEWBOX">
+                      {questionsArray && questionsArray.thumbnail &&
+                         <div className="css-qrax4f">
+                            <div className="css-sb08dx">
+                                <span className="sapn1">
+                                    <span className="span2">
+                                        <img className="Image" src={`https://writers.explorethebuzz.com${questionsArray.thumbnail.url }`} alt="Question Image" />
+
+                                    </span>
+
+                                </span>
+                                <h2 className="Box css-cu0uac ">{name}</h2>
+                            </div>
+                           
+
+                        </div>}
 
                         <div className="Box Gmestabox css-cu0uac ">
                             <h2 className="Box css-cu0uac ">What is your Name </h2>
-                            <input className="css-1u1dnir " onChange={(e) => setName(e.target.value)}>
+                            <input className="css-1u1dnir " onChange={(e) => setNames(e.target.value)}>
 
                             </input>
 
@@ -282,56 +334,64 @@ const NormalQuiz = () => {
                 <div>
 
                     <div className="Score">
-                        <Typography className="scorebutton" style={{ backgroundColor: !color ? "#ff5722" : color }} variant="body1" >Score: {score}/{questionsArray.length}</Typography>
+                        <Typography className="scorebutton" style={{ backgroundColor: !color ? "#ff5722" : color }} variant="body1" >Score: {score}/{questionsArray.qna.length}</Typography>
 
                     </div>
                     <div className="css-q0xr6t" style={{ backgroundColor: !color ? "#ff5722" : color }}>
+
                         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }} className="css-1mygs9k ">
-                            {questionsArray[currentQuestionIndex].question.image &&
+                            <Typography className="Timer" style={{ marginTop: "0px" }} variant="h6">
+                                {remainingTime}
+                            </Typography>
+                            {questionsArray && questionsArray.qna[currentQuestionIndex].media &&
                                 <div className="css-qrax4f">
                                     <div className="css-sb08dx">
                                         <span className="sapn1">
                                             <span className="span2">
-                                                <img className="Image" src={`/${questionsArray[currentQuestionIndex].question.image}`} alt="Question Image" />
+                                                <img className="Image" src={`https://writers.explorethebuzz.com${questionsArray.qna[currentQuestionIndex].media.url}`} alt="Question Image" />
 
                                             </span>
 
                                         </span>
                                     </div>
                                 </div>}
-                            <Typography variant="h6">{questionsArray[currentQuestionIndex].question.text}</Typography>
-
-                            <Typography className="Timer" style={{ marginTop: "10px" }} variant="h6">
-                                {remainingTime}
-
+                            <Typography style={{ marginTop: "20px" }} variant="h6">{questionsArray.qna[currentQuestionIndex].question
+                            } ?
 
                             </Typography>
+
+
 
                         </div>
                         <div className="css-19nn44a ">
                             <ui className="css-1xa84ef"  >
-                                {questionsArray[currentQuestionIndex].options.map((option, index) => (
-                                    <li
-                                        key={index}
-                                        variant={selectedOption === index ? 'contained' : 'outlined'}
-                                        onClick={() => handleOptionClick(index)}
-                                        disabled={selectedOption !== null}
-                                        style={{
-                                            backgroundColor: selectedOption === null ? "rgb(240, 240, 246)" : questionsArray[currentQuestionIndex].ans === index ?
-                                                'green' :
-                                                selectedOption === index ? 'red' : "rgb(240, 240, 246)",
+                                {questionsArray && questionsArray.qna[currentQuestionIndex].options
+                                    .map((option, index) => (
+                                        <li
+                                            key={index}
+                                            variant={selectedOption ? 'contained' : 'outlined'}
+                                            onClick={() => handleOptionClick(index)}
+                                            disabled={selectedOption !== null}
+                                            style={{
+                                                backgroundColor: selectedOption === null ? "rgb(240, 240, 246)" : questionsArray.qna
+                                                [currentQuestionIndex].options
+                                                [index].correct
+                                                    === true ?
+                                                    'green' :
+                                                    selectedOption === index ? 'red' : "rgb(240, 240, 246)",
 
-                                            color: selectedOption === index
-                                                ? questionsArray[currentQuestionIndex].ans === index
-                                                    ? 'black'
-                                                    : 'white'
-                                                : 'black',
-                                            pointerEvents: selectedOption !== null ? 'none' : 'auto',
-                                            cursor: selectedOption !== null ? 'not-allowed' : 'pointer'
-                                        }}>
-                                        {option}
-                                    </li>
-                                ))}
+                                                color: selectedOption 
+                                                    ? questionsArray.qna[currentQuestionIndex].options
+                                                    [index].correct === true
+                                                        ? 'white'
+                                                        : 'white'
+                                                    : 'black',
+                                                pointerEvents: selectedOption !== null ? 'none' : 'auto',
+                                                cursor: selectedOption !== null ? 'not-allowed' : 'pointer'
+                                            }}>
+                                            {option.text}
+                                        </li>
+                                    ))}
                             </ui>
                         </div>
                     </div>

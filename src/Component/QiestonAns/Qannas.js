@@ -178,7 +178,7 @@ const QuestionEditor = ({ data ,name}) => {
                 Share your Quiz link with all your friends and see their results.
               </div>
               <div className='css-19nn44a'>
-                <input className='Input' value={ `http://localhost:3000/quizpage/Anstpage/${id}`} />
+                <input className='Input' value={ `https://mindpuzzlers.com/quizpage/Anstpage/${id}`} />
                 
                 <Button className='Witdh' style={{ backgroundColor: "#FE2C54",color:"white",marginTop:"10px" }} onClick={copyToClipboard}>Copy Link</Button>
                 {copied && <p>Copied to clipboard!</p>}
