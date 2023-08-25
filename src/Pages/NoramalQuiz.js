@@ -373,19 +373,19 @@ const NormalQuiz = () => {
                                             onClick={() => handleOptionClick(index)}
                                             disabled={selectedOption !== null}
                                             style={{
-                                                backgroundColor: selectedOption === null ? "rgb(240, 240, 246)" : questionsArray.qna
-                                                [currentQuestionIndex].options
-                                                [index].correct
+                                                backgroundColor: selectedOption === null ? "rgb(240, 240, 246)"
+                                                 :questionsArray.qna[currentQuestionIndex].options[index].correct
+                                                
                                                     === true ?
                                                     'green' :
                                                     selectedOption === index ? 'red' : "rgb(240, 240, 246)",
 
-                                                color: selectedOption 
-                                                    ? questionsArray.qna[currentQuestionIndex].options
-                                                    [index].correct === true
-                                                        ? 'white'
-                                                        : 'white'
-                                                    : 'black',
+                                               color : selectedOption === null ? "black" : 
+                                               selectedOption === index ? "white" : 
+                                              ( questionsArray.qna[currentQuestionIndex].options[index].correct) === true
+
+                                                ? "white"  : "black"
+                                               , 
                                                 pointerEvents: selectedOption !== null ? 'none' : 'auto',
                                                 cursor: selectedOption !== null ? 'not-allowed' : 'pointer'
                                             }}>

@@ -7,11 +7,11 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import LoadingSpiner from "../Spiner/Spiner"
 import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-const QuestionEditor = ({ data ,name}) => {
+const QuestionEditor = ({ data, name }) => {
   console.log("its working ", data)
   // Step 2: Set up the component's state
   const [questions, setQuestions] = useState();
-  const [loading, setLoading] =useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [id, setID] = useState()
   const [copied, setCopied] = useState(false);
@@ -64,7 +64,7 @@ const QuestionEditor = ({ data ,name}) => {
   function handleSubmit() {
     console.log('Submitted data:', questions);
     setLoading(true)
-    const Ans = Creatuser(questions,name)
+    const Ans = Creatuser(questions, name)
     if (Ans) {
       Ans.then((x) => {
         console.log(x)
@@ -108,7 +108,7 @@ const QuestionEditor = ({ data ,name}) => {
   // Step 4: Render the UI
   return (
     <>
-      {!id && !loading && 
+      {!id && !loading &&
         <div className='Home_container__bCOhY'>
           <main className='Home_main__nLjiQ'>
             {questions && questions.map((q, index) => (
@@ -153,8 +153,12 @@ const QuestionEditor = ({ data ,name}) => {
 
               </div>
             ))}
-            <Button onClick={handleAddQuestion} style={{ backgroundColor: "#805AD5", color: "white" }} className="MT " variant="contained">Add Question</Button>
-            <Button onClick={handleSubmit} style={{ backgroundColor: "rgb(255, 15, 57)", marginTop: "20px !important" }} className="MT" variant="contained" color="success" >Submit</Button>
+            {questions &&
+              <>
+                <Button onClick={handleAddQuestion} style={{ backgroundColor: "#805AD5", color: "white" }} className="MT " variant="contained">Add Question</Button>
+                <Button onClick={handleSubmit} style={{ backgroundColor: "rgb(255, 15, 57)", marginTop: "20px !important" }} className="MT" variant="contained" color="success" >Submit</Button>
+              </>
+            }
 
 
           </main>
@@ -164,11 +168,11 @@ const QuestionEditor = ({ data ,name}) => {
 
 
       }
-      { loading && 
-          <LoadingSpiner/>
+      {loading &&
+        <LoadingSpiner />
       }
 
-      {id && ShowShairLink && !loading && 
+      {id && ShowShairLink && !loading &&
         <main className='Home_main__nLjiQ '>
           <div className='css-1e0mhkg '>
             <div className='css-1x61a8'>
@@ -178,12 +182,12 @@ const QuestionEditor = ({ data ,name}) => {
                 Share your Quiz link with all your friends and see their results.
               </div>
               <div className='css-19nn44a'>
-                <input className='Input' value={ `https://mindpuzzlers.com/quizpage/Anstpage/${id}`} />
-                
-                <Button className='Witdh' style={{ backgroundColor: "#FE2C54",color:"white",marginTop:"10px" }} onClick={copyToClipboard}>Copy Link</Button>
+                <input className='Input' value={`https://mindpuzzlers.com/quizpage/Anstpage/${id}`} />
+
+                <Button className='Witdh' style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Copy Link</Button>
                 {copied && <p>Copied to clipboard!</p>}
-                <Button className='Witdh' style={{ backgroundColor: "#22c35e",color:"white",marginTop:"10px" }} onClick={handleShareOnWhatsApp}>Send Quiz In whatsapp</Button>
-                <Button className='Witdh' style={{ backgroundColor: "#E53E3E",color:"white" ,marginTop:"10px"}} onClick={copyToClipboard}>Add In Instagram Bio</Button>
+                <Button className='Witdh' style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={handleShareOnWhatsApp}>Send Quiz In whatsapp</Button>
+                <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Add In Instagram Bio</Button>
 
 
               </div>
