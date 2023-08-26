@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { db, collection, getDocs, deleteDoc, doc, getDoc } from '../Firebase/firebse'; // Import necessary Firebase modules
+import Confetti from 'react-confetti'
+import { useWindowSize } from "@uidotdev/usehooks";
 
 import "./ansqusionpage.css"
 import { Button, Box, CircularProgress, LinearProgress, Typography } from '@mui/material';
@@ -21,16 +23,18 @@ const NormalQuiz = () => {
     const [gameOver, setGameover] = useState(false)
     const [Start, setStart] = useState(false)
     const [name, setName] = useState()
-     const [names,setNames] = useState()
+    const [names, setNames] = useState()
     const [Mainuser, setMainuser] = useState()
     const [color, setColor] = useState()
     const [open, setOpen] = useState(false);
-    const [remainingTime, setRemainingTime] = useState(10); // Initialize timer with 30 seconds
+    const [run,setrun] = useState(true)
+    const [remainingTime, setRemainingTime] = useState(30); // Initialize timer with 30 seconds
     const [copied, setCopied] = useState(false);
     const params = useParams();
     const handleClickOpen = () => {
         setOpen(true);
     };
+    const size = useWindowSize();
 
     function CircularProgressWithLabel(props) {
         return (
@@ -141,7 +145,7 @@ const NormalQuiz = () => {
                 .then(data => {
                     // Process the retrieved data here
                     setquestionsArray(data.data);
-                        
+
                     setName(data.data.name)
                 })
                 .catch(error => {
@@ -173,18 +177,21 @@ const NormalQuiz = () => {
 
     const handleNextClick = () => {
         randomNumberColor()
-        console.log((questionsArray.qna.length) === (currentQuestionIndex + 1))
+
         if ((questionsArray.qna.length) === (currentQuestionIndex + 1)) {
-            if (questionsArray.qna
+            if (selectedOption && questionsArray.qna
             [currentQuestionIndex].options[selectedOption].correct
                 === true) {
                 setScore(score + 1);
             }
             setGameover(true)
+            setTimeout(() => {
+                setrun(false)
+            },5000)
             console.log("log out")
             return
-        }
-        if (questionsArray.qna
+        } 
+        if (selectedOption && questionsArray.qna
         [currentQuestionIndex].options[selectedOption].correct
             === true) {
             setScore(score + 1);
@@ -226,6 +233,13 @@ const NormalQuiz = () => {
             {
                 gameOver &&
                 <><main className='Home_main__nLjiQ '>
+                   {run && <Confetti
+                        width={size.width}
+                        height={size.height}
+                        
+                        run={run}
+
+                    />}
                     <div className="css-vg5ilo">Your score: <br />
                         {score} out of {questionsArray.qna.length}
                     </div>
@@ -242,7 +256,7 @@ const NormalQuiz = () => {
                                 <Button className='Witdh' style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Copy Link</Button>
                                 {copied && <p>Copied to clipboard!</p>}
                                 <Button className='Witdh' style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={handleShareOnWhatsApp}>Send Quiz In whatsapp</Button>
-                                <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Add In Instagram Bio</Button>
+                                {/* <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Add In Instagram Bio</Button> */}
 
 
                             </div>
@@ -272,21 +286,21 @@ const NormalQuiz = () => {
                 <main className="Home_main">
 
                     <div className="NEWBOX">
-                      {questionsArray && questionsArray.thumbnail &&
-                         <div className="css-qrax4f">
-                            <div className="css-sb08dx">
-                                <span className="sapn1">
-                                    <span className="span2">
-                                        <img className="Image" src={`https://writers.explorethebuzz.com${questionsArray.thumbnail.url }`} alt="Question Image" />
+                        {questionsArray && questionsArray.thumbnail &&
+                            <div className="css-qrax4f">
+                                <div className="css-sb08dx">
+                                    <span className="sapn1">
+                                        <span className="span2">
+                                            <img className="Image" src={`https://writers.explorethebuzz.com${questionsArray.thumbnail.url}`} alt="Question Image" />
+
+                                        </span>
 
                                     </span>
+                                    <h2 className="Box css-cu0uac ">{name}</h2>
+                                </div>
 
-                                </span>
-                                <h2 className="Box css-cu0uac ">{name}</h2>
-                            </div>
-                           
 
-                        </div>}
+                            </div>}
 
                         <div className="Box Gmestabox css-cu0uac ">
                             <h2 className="Box css-cu0uac ">What is your Name </h2>
@@ -374,18 +388,18 @@ const NormalQuiz = () => {
                                             disabled={selectedOption !== null}
                                             style={{
                                                 backgroundColor: selectedOption === null ? "rgb(240, 240, 246)"
-                                                 :questionsArray.qna[currentQuestionIndex].options[index].correct
-                                                
-                                                    === true ?
-                                                    'green' :
-                                                    selectedOption === index ? 'red' : "rgb(240, 240, 246)",
+                                                    : questionsArray.qna[currentQuestionIndex].options[index].correct
 
-                                               color : selectedOption === null ? "black" : 
-                                               selectedOption === index ? "white" : 
-                                              ( questionsArray.qna[currentQuestionIndex].options[index].correct) === true
+                                                        === true ?
+                                                        'green' :
+                                                        selectedOption === index ? 'red' : "rgb(240, 240, 246)",
 
-                                                ? "white"  : "black"
-                                               , 
+                                                color: selectedOption === null ? "black" :
+                                                    selectedOption === index ? "white" :
+                                                        (questionsArray.qna[currentQuestionIndex].options[index].correct) === true
+
+                                                            ? "white" : "black"
+                                                ,
                                                 pointerEvents: selectedOption !== null ? 'none' : 'auto',
                                                 cursor: selectedOption !== null ? 'not-allowed' : 'pointer'
                                             }}>

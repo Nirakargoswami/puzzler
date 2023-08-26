@@ -1,5 +1,5 @@
 .Home_main {
-    min-height: 100vh;
+   
     padding: 2rem 0;
     flex: 1 1;
     display: flex;
@@ -118,7 +118,6 @@ li{
 }
 
 .css-ffdj00 {
-    margin-top: 46px;
     max-width: 32rem;
     border-width: 3px;
     border-radius: 2px;
@@ -146,8 +145,8 @@ li{
     font-size: 30px;
     padding: 20px;
     color: white;
-    margin-bottom: 40px;
-    margin-top: 70px;
+    margin-bottom: 20px;
+  
 }
 
 .css-qdfofv{

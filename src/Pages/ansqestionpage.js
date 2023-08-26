@@ -136,7 +136,7 @@ const QuizApp = () => {
                 <Table aria-label="friend-scores-table">
                     <TableHead style={{ textAlign: "center" }} >
                         <TableRow>
-                            <TableCell>Friend </TableCell>
+                            <TableCell>{ `${(questionsArray && questionsArray.type === "couple" )? "partner" : "Friend"  }`} </TableCell>
                             <TableCell align="right">Score</TableCell>
                         </TableRow>
                     </TableHead>
@@ -187,7 +187,7 @@ const QuizApp = () => {
                     <div className="css-ffdj00">
                         <p class="chakra-text css-d755lw" style={{ margin: "0px" }}>Create your Quiz</p>
                         <br />
-                        It is your turn now. Create your quiz and send it to your partner!
+                        It is your turn now. Create your quiz and send it to your{ `${(questionsArray && questionsArray.type === "couple" )? "partner" : "Friend"  }`}
                         <br />
                         <Link style={{ width: "100%" }} to={"/"}>
                             <Button style={{ backgroundColor: "#805AD5", with: "100%", marginTop: "5px", borderRadius: "10px" }} variant="contained" onClick={handleNextClick}>Get Started</Button>
@@ -228,16 +228,16 @@ const QuizApp = () => {
                     </div> */}
 
                     <div class="css-18fgjcj">
-                        <p class="chakra-text css-d755lw">Create your Couple Quiz</p>
+                        <p class="chakra-text css-d755lw">Create your { `${(questionsArray && questionsArray.type === "couple" )? "partner" : "Friend"  }`} Quiz</p>
                         <br />
-                        It is your turn now. Create your quiz and send it to your partner<br />
+                        It is your turn now. Create your quiz and send it to your { `${(questionsArray && questionsArray.type === "couple" )? "partner" : "Friend"  }`}<br />
                         <Link style={{ width: "100%" }} to={"/"}>
                             <Button style={{ backgroundColor: "#805AD5", with: "100%", marginTop: "5px", borderRadius: "5px" }} variant="contained" onClick={handleNextClick}>Get Started</Button>
                         </Link>
                     </div>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <div class="css-ipd9fp">
-                            <p class="chakra-text css-d755lw">Top friends of {questionsArray && questionsArray.name}</p>
+                            <p class="chakra-text css-d755lw"> { `${(questionsArray && questionsArray.type === "couple" )? "partner" : "Top Friend"  }`} of {questionsArray && questionsArray.name}</p>
                             <br />
                             <div class="chakra-table__container css-zipzvv">
 
@@ -262,21 +262,12 @@ const QuizApp = () => {
             {gameOver &&
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <div class="css-ipd9fp">
-                        <p class="chakra-text css-d755lw">Top friends of {questionsArray && questionsArray.name}</p>
+                        <p class="chakra-text css-d755lw"> { `${(questionsArray && questionsArray.type === "couple" )? "partner" : "Top Friend"  }`} {questionsArray && questionsArray.name}</p>
                         <br />
                         <div class="chakra-table__container css-zipzvv">
-
-
-
                             {friendScores &&
-
                                 FetchFriendScores()
-
                             }
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -284,7 +275,6 @@ const QuizApp = () => {
             }
             {open &&
                 <div>
-
                     <Dialog
                         open={open}
 
@@ -293,8 +283,6 @@ const QuizApp = () => {
                         aria-describedby="alert-dialog-slide-description"
                     >
                         <DialogTitle style={{ fontSize: "13px", padding: "10px 10px " }}>{"Please select an option before clicking Next"}</DialogTitle>
-
-
                     </Dialog>
                 </div>
             }

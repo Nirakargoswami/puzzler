@@ -58,13 +58,13 @@ const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
 
-const Creatuser = async (data,name) => {
+const Creatuser = async (data,name,type) => {
     // console.log(name)
     const q = query(collection(db, "Quizmingle"));
     const querySnapshot = await getDocs(q);
     let user
     const docRef = await addDoc(collection(db, "Quizmingle"),
-        { data ,name}
+        {data,name,type}
     )
     const newDocId = docRef.id
     console.log(newDocId, "Document Created")

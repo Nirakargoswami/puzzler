@@ -113,7 +113,7 @@ const quizpage = () => {
             }
 
             {data && show &&
-                <QuestionEditor data={data && data} name={name && name} />}
+                <QuestionEditor data={data && data} name={name && name} type={params.quizname && params.quizname} />}
         </div>
     )
 }

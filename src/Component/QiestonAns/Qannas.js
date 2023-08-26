@@ -7,7 +7,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import LoadingSpiner from "../Spiner/Spiner"
 import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-const QuestionEditor = ({ data, name }) => {
+const QuestionEditor = ({ data, name,type }) => {
   console.log("its working ", data)
   // Step 2: Set up the component's state
   const [questions, setQuestions] = useState();
@@ -37,6 +37,7 @@ const QuestionEditor = ({ data, name }) => {
   const selecct = (questionIndex, selec) => {
     const newQuestions = [...questions];
     newQuestions[questionIndex].ans = selec
+    setQuestions(newQuestions)
   }
   function handleAddOption(questionIndex) {
     const newQuestions = [...questions];
@@ -64,7 +65,7 @@ const QuestionEditor = ({ data, name }) => {
   function handleSubmit() {
     console.log('Submitted data:', questions);
     setLoading(true)
-    const Ans = Creatuser(questions, name)
+    const Ans = Creatuser(questions, name,type)
     if (Ans) {
       Ans.then((x) => {
         console.log(x)
@@ -124,7 +125,7 @@ const QuestionEditor = ({ data, name }) => {
                   {q.options.map((option, optionIndex) => {
                     return (
                       <div className='css-5k76gu '>
-                        <FormControlLabel className='SLect' control={<Checkbox size="small" className='SLect' onClick={() => selecct(index, optionIndex)} />} />
+                        <FormControlLabel className='SLect' control={<Checkbox size="small" checked={  (q.ans == optionIndex) ? true : false } className='SLect' onClick={() => selecct(index, optionIndex)} />} />
 
                         <textarea
                           key={optionIndex}
