@@ -7,7 +7,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import LoadingSpiner from "../Spiner/Spiner"
 import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-const QuestionEditor = ({ data, name,type }) => {
+const QuestionEditor = ({ data, name, type }) => {
   console.log("its working ", data)
   // Step 2: Set up the component's state
   const [questions, setQuestions] = useState();
@@ -53,6 +53,7 @@ const QuestionEditor = ({ data, name,type }) => {
   function handleRemoveQuestion(questionIndex) {
     const newQuestions = [...questions];
     newQuestions.splice(questionIndex, 1);
+    console.log(newQuestions)
     setQuestions(newQuestions);
   }
 
@@ -61,11 +62,74 @@ const QuestionEditor = ({ data, name,type }) => {
     setQuestions(newQuestions);
   }
 
+  const MakeaQuestioui = () => {
+    return (
+      <>
+        <main className='Home_main__nLjiQ'>
+          {questions && questions.map((q, index) => (
+            <div className='css-1xsveqn' key={index}>
+              <div className='css-15hb4qy'>Question {index + 1}</div>
+              <div className='css-r4358i'>
+
+                <textarea type="text"
+                  className='Inputs textarea css-1gxocc'
+                  rows="auto"
+                  value={q.question}
+                  onChange={(e) => handleQuestionChange(e, index)}>{q.question}</textarea>
+                <br />
+                {q.options.map((option, optionIndex) => {
+                  return (
+                    <div className='css-5k76gu '>
+                      <FormControlLabel className='SLect' control={<Checkbox size="small" checked={(q.ans == optionIndex) ? true : false} className='SLect' onClick={() => selecct(index, optionIndex)} />} />
+
+                      <textarea
+                        key={optionIndex}
+                        type="text"
+                        value={option}
+                        className="Input textarea css-1gxocc"
+                        onChange={(e) => handleOptionChange(e, index, optionIndex)}
+                      />
+
+
+                      <CancelIcon className='Cancle' onClick={() => HandleOptionchange(index, optionIndex)} />
+
+                      <br />
+                    </div>
+                  )
+                }
+
+
+                )}
+
+
+              </div>
+              <Button style={{ backgroundColor: "#805AD5", color: "white" }} onClick={() => handleAddOption(index)} className="Ma MB" variant="contained">Add Option</Button>
+
+              <Button style={{ backgroundColor: "#805AD5", color: "white" }} onClick={() => handleRemoveQuestion(index)} className="Ma MB" variant="contained">Remove Question</Button>
+
+            </div>
+          ))}
+          {questions &&
+            <>
+              <Button onClick={handleAddQuestion} style={{ backgroundColor: "#805AD5", color: "white" }} className="MT " variant="contained">Add Question</Button>
+              <Button onClick={handleSubmit} style={{ backgroundColor: "rgb(255, 15, 57)", marginTop: "20px !important" }} className="MT" variant="contained" color="success" >Submit</Button>
+            </>
+          }
+
+
+        </main>
+      </>
+    )
+  }
+
+  useEffect(() => {
+    MakeaQuestioui()
+  }, [questions])
   // Step 5: Implement the handleSubmit function
   function handleSubmit() {
     console.log('Submitted data:', questions);
     setLoading(true)
-    const Ans = Creatuser(questions, name,type)
+    const Ans = Creatuser(questions, name, type)
     if (Ans) {
       Ans.then((x) => {
         console.log(x)
@@ -111,60 +175,9 @@ const QuestionEditor = ({ data, name,type }) => {
     <>
       {!id && !loading &&
         <div className='Home_container__bCOhY'>
-          <main className='Home_main__nLjiQ'>
-            {questions && questions.map((q, index) => (
-              <div className='css-1xsveqn' key={index}>
-                <div className='css-15hb4qy'>Question {index + 1}</div>
-                <div className='css-r4358i'>
-
-                  <textarea type="text"
-                    className='Inputs textarea css-1gxocc'
-                    rows="auto"
-                    onChange={(e) => handleQuestionChange(e, index)}>{q.question}</textarea>
-                  <br />
-                  {q.options.map((option, optionIndex) => {
-                    return (
-                      <div className='css-5k76gu '>
-                        <FormControlLabel className='SLect' control={<Checkbox size="small" checked={  (q.ans == optionIndex) ? true : false } className='SLect' onClick={() => selecct(index, optionIndex)} />} />
-
-                        <textarea
-                          key={optionIndex}
-                          type="text"
-                          value={option}
-                          className="Input textarea css-1gxocc"
-                          onChange={(e) => handleOptionChange(e, index, optionIndex)}
-                        />
 
 
-                        <CancelIcon className='Cancle' onClick={() => HandleOptionchange(index, optionIndex)} />
-
-                        <br />
-                      </div>
-                    )
-                  }
-
-
-                  )}
-
-
-                </div>
-                <Button style={{ backgroundColor: "#805AD5", color: "white" }} onClick={() => handleAddOption(index)} className="Ma MB" variant="contained">Add Option</Button>
-
-                <Button style={{ backgroundColor: "#805AD5", color: "white" }} onClick={() => handleRemoveQuestion(index)} className="Ma MB" variant="contained">Remove Question</Button>
-
-              </div>
-            ))}
-            {questions &&
-              <>
-                <Button onClick={handleAddQuestion} style={{ backgroundColor: "#805AD5", color: "white" }} className="MT " variant="contained">Add Question</Button>
-                <Button onClick={handleSubmit} style={{ backgroundColor: "rgb(255, 15, 57)", marginTop: "20px !important" }} className="MT" variant="contained" color="success" >Submit</Button>
-              </>
-            }
-
-
-          </main>
-
-
+          {MakeaQuestioui()}
         </div>
 
 

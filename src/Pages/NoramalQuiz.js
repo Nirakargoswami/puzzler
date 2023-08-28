@@ -191,7 +191,8 @@ const NormalQuiz = () => {
             console.log("log out")
             return
         } 
-        if (selectedOption && questionsArray.qna
+
+        if (questionsArray && questionsArray.qna
         [currentQuestionIndex].options[selectedOption].correct
             === true) {
             setScore(score + 1);
