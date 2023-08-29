@@ -9,7 +9,7 @@ import {
   Form,
   d,
 } from "react-router-dom";
-import AdsComponent from "./Component/Addsence/Addsence";
+import AdsComponent from "../src/Component/Addsence /Addsence";
 import TermsOfService from "../src/Pages/Teremuse";
 import Aboutuse from "../src/Pages/Aboutus";
 import Privasy from "../src/Pages/Privesy";
@@ -29,7 +29,6 @@ function App() {
   const dispatch = useDispatch();
   console.log(state);
 
-  const { dataAdSlot } = props;
 
   useEffect(() => {
     try {
@@ -46,15 +45,8 @@ function App() {
           marginBottom: "100px",
         }}
       >
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-          data-ad-slot={dataAdSlot}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-
+      
+      <AdsComponent dataAdSlot='X7XXXXXX5X' />
         <ResponsiveDrawer />
         <Routes>
           <Route path="/" element={<Home />} />

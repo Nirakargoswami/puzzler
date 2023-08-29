@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { db, collection, getDocs, deleteDoc, doc, getDoc } from '../Firebase/firebse'; // Import necessary Firebase modules
 import Confetti from 'react-confetti'
 import { useWindowSize } from "@uidotdev/usehooks";
-
+import QuizRecommendation from "../Component/RECEOMEND/RECEmend"
 import "./ansqusionpage.css"
 import { Button, Box, CircularProgress, LinearProgress, Typography } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
@@ -28,6 +28,7 @@ const NormalQuiz = () => {
     const [color, setColor] = useState()
     const [open, setOpen] = useState(false);
     const [run,setrun] = useState(true)
+    const [Quizeee,setQuizzes] = useState()
     const [remainingTime, setRemainingTime] = useState(30); // Initialize timer with 30 seconds
     const [copied, setCopied] = useState(false);
     const params = useParams();
@@ -36,30 +37,7 @@ const NormalQuiz = () => {
     };
     const size = useWindowSize();
 
-    function CircularProgressWithLabel(props) {
-        return (
-            <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-                <CircularProgress variant="determinate" {...props} />
-                <Box
-                    sx={{
-                        top: 0,
-                        left: 0,
-                        bottom: 0,
-                        right: 0,
-                        position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}
-                >
-                    <Typography variant="caption" component="div" color="text.secondary">
-                        {`${Math.round(props.value)}%`}
-                    </Typography>
-                </Box>
-            </Box>
-        );
-    }
-
+   
 
     const handleClose = () => {
         setOpen(false);
@@ -117,9 +95,33 @@ const NormalQuiz = () => {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
     }, [remainingTime])
+ 
+    const fethdata = async () => {
+        try {
+            const apiUrl = "https://writers.explorethebuzz.com/api/quizzes?filters[for][$eq]=Nirakar&fields[0]=name&fields[1]=slug&fields[2]=rank&populate[thumbnail][fields][0]=url&pagination[page]=1&pagination[pageSize]=10";
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // You can process the data here
+                    setQuizzes(data);
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+
+            // const quizzesSnapshot = await getDocs(collection(db, "quiznames"));
+            // const quizzesData = quizzesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            // console.log(quizzesData)
+            // setQuizzes(quizzesData);
+        } catch (error) {
+            console.error('Error fetching quizzes:', error);
+        }
+    }
 
     useEffect(() => {
         handleEdit(params.quizname)
+        
     }, [params.quizname])
 
     const handleEdit = async (name) => {
@@ -184,7 +186,9 @@ const NormalQuiz = () => {
                 === true) {
                 setScore(score + 1);
             }
+            
             setGameover(true)
+            fethdata()
             setTimeout(() => {
                 setrun(false)
             },5000)
@@ -203,8 +207,7 @@ const NormalQuiz = () => {
         randomNumberColor()
         setCurrentQuestionIndex(currentQuestionIndex + 1);
     };
-
-
+   
     const copyToClipboard = () => {
         const textArea = document.createElement('textarea');
         textArea.value = `https://mindpuzzlers.com/NormalQuiz/${params.quizname}`
@@ -234,13 +237,17 @@ const NormalQuiz = () => {
             {
                 gameOver &&
                 <><main className='Home_main__nLjiQ '>
-                   {run && <Confetti
+
+                                       {run && <Confetti
                         width={size.width}
                         height={size.height}
                         
                         run={run}
 
                     />}
+                    
+                    {Quizeee && 
+                     <QuizRecommendation quizData={Quizeee && Quizeee} />}
                     <div className="css-vg5ilo">Your score: <br />
                         {score} out of {questionsArray.qna.length}
                     </div>
