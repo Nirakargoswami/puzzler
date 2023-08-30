@@ -5,6 +5,19 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import LoadingSpiner from "../Spiner/Spiner"
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import IconButton from '@mui/material/IconButton';
+
+import ListItemText from '@mui/material/ListItemText';
+import CommentIcon from '@mui/icons-material/Comment';
+
 import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 const QuestionEditor = ({ data, name, type }) => {
@@ -12,9 +25,10 @@ const QuestionEditor = ({ data, name, type }) => {
   // Step 2: Set up the component's state
   const [questions, setQuestions] = useState();
   const [loading, setLoading] = useState(false);
-
+  const [Addinsta, SEtAddinst] = useState(false)
   const [id, setID] = useState()
   const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const [ShowShairLink, setShowShairLink] = useState(false)
   // Step 3: Provide UI elements to add, edit, and delete questions and options
@@ -24,7 +38,12 @@ const QuestionEditor = ({ data, name, type }) => {
     setQuestions(newQuestions);
   }
 
-
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   useEffect(() => {
     setQuestions(data)
   }, [])
@@ -103,6 +122,7 @@ const QuestionEditor = ({ data, name, type }) => {
 
 
               </div>
+
               <Button style={{ backgroundColor: "#805AD5", color: "white" }} onClick={() => handleAddOption(index)} className="Ma MB" variant="contained">Add Option</Button>
 
               <Button style={{ backgroundColor: "#805AD5", color: "white" }} onClick={() => handleRemoveQuestion(index)} className="Ma MB" variant="contained">Remove Question</Button>
@@ -146,7 +166,7 @@ const QuestionEditor = ({ data, name, type }) => {
 
   const copyToClipboard = () => {
     const textArea = document.createElement('textarea');
-    textArea.value = `https://mindpuzzlers.com/quizpage/Anstpage/${id}`;
+    textArea.value = `https://mindpuzzlers.gangsofgamer.com/quizpage/Anstpage/${id}`;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand('copy');
@@ -154,7 +174,7 @@ const QuestionEditor = ({ data, name, type }) => {
     setCopied(true);
   };
   const handleShareOnWhatsApp = () => {
-    const link = `https://mindpuzzlers.com/quizpage/Anstpage/${id}`; // Replace with your actual link
+    const link = `https://mindpuzzlers.gangsofgamer.com/quizpage/Anstpage/${id}`; // Replace with your actual link
 
     // Construct the WhatsApp URL
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(link)}`;
@@ -164,12 +184,19 @@ const QuestionEditor = ({ data, name, type }) => {
   };
   const copyAndRedirect = async () => {
     try {
-      await navigator.clipboard.writeText(`https://mindpuzzlers.com/quizpage/Anstpage/${id}`);
+      await navigator.clipboard.writeText(`https://mindpuzzlers.gangsofgamer.com/quizpage/Anstpage/${id}`);
       window.location.href = "your-wp-app-link";
     } catch (error) {
       console.error("Error copying link: ", error);
     }
   };
+  const Gototheinstageam = () => {
+    const instagramUrl = `https://www.instagram.com/`;
+
+    // Open the Instagram profile URL in a new tab or window
+    window.open(instagramUrl, '_blank');
+  }
+
   // Step 4: Render the UI
   return (
     <>
@@ -195,13 +222,52 @@ const QuestionEditor = ({ data, name, type }) => {
                 <br />
                 Share your Quiz link with all your friends and see their results.
               </div>
+              {open &&
+                <div>
+                  
+                  <Dialog
+                    open={open}
+
+                    keepMounted
+                    onClose={handleClose}
+                    aria-describedby="alert-dialog-slide-description"
+                  >
+                    <DialogTitle style={{textAlign:"center"}}>{"Add To Your Instagram"}</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-slide-description">
+                        <List>
+                        <ListItem>
+                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`Go into Your Instagram `} />
+                          </ListItem>
+                          <ListItem>
+                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`tap the "Edit Profile" button`} />
+                          </ListItem>
+                          <ListItem>
+                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`Add Your Link To Website Link" field`} /> 
+                          </ListItem>
+                          <ListItem>
+                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`Save Changes`} /> 
+                          </ListItem>
+
+                          </List>
+                         
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button  style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }}onClick={handleClose}>Close</Button>
+                      <Button  style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={() => Gototheinstageam()}>Goto the Instagram</Button>
+                    </DialogActions>
+                  </Dialog>
+                </div>
+
+              }
               <div className='css-19nn44a'>
-                <input className='Input' value={`https://mindpuzzlers.com/quizpage/Anstpage/${id}`} />
+                <input className='Input' value={`https://mindpuzzlers.gangsofgamer.com/quizpage/Anstpage/${id}`} />
 
                 <Button className='Witdh' style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Copy Link</Button>
                 {copied && <p>Copied to clipboard!</p>}
                 <Button className='Witdh' style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={handleShareOnWhatsApp}>Send Quiz In whatsapp</Button>
-                <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Add In Instagram Bio</Button>
+                <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={() => setOpen(true)}>Add In Instagram Bio</Button>
 
 
               </div>

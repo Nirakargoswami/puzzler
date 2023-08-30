@@ -13,7 +13,7 @@
     />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2684572178236927"
      crossorigin="anonymous"></script>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LceCKMnAAAAAFFGZG8noQIZeJTR1jILKFrUaROu"></script>
+    <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LceCKMnAAAAAFFGZG8noQIZeJTR1jILKFrUaROu"></script> -->
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/manifest.json" />
     <!--
@@ -39,16 +39,16 @@
     <title>Wordle</title>
   </head>
   <script>
-    function onClick(e) {
-      e.preventDefault();
-      grecaptcha.enterprise.ready(async () => {
-        const token = await grecaptcha.enterprise.execute('6LceCKMnAAAAAFFGZG8noQIZeJTR1jILKFrUaROu', {action: 'LOGIN'});
-        // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
-        // reCAPTCHA Enterprise to the end user's browser.
-        // This token must be validated by creating an assessment.
-        // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
-      });
-    }
+    // function onClick(e) {
+    //   e.preventDefault();
+    //   grecaptcha.enterprise.ready(async () => {
+    //     const token = await grecaptcha.enterprise.execute('6LceCKMnAAAAAFFGZG8noQIZeJTR1jILKFrUaROu', {action: 'LOGIN'});
+    //     // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
+    //     // reCAPTCHA Enterprise to the end user's browser.
+    //     // This token must be validated by creating an assessment.
+    //     // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
+    //   });
+    // }
     </script>
   <body>
    

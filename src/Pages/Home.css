@@ -132,3 +132,14 @@ margin-top: 20px;
     margin-top: -20px;
 
 }
+
+.Reimge{
+height: 100px;
+width: 100px;
+}
+.REbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}

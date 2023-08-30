@@ -22,12 +22,7 @@ function App() {
   const [rows, setRows] = useState("");
   const [headCells, setHeadCells] = useState("");
   const state = useSelector((state) => state);
-  useEffect(() => {
-    setRows(state.productdata.rows);
-    setHeadCells(state.productdata.headCells);
-  }, [state]);
-  const dispatch = useDispatch();
-  console.log(state);
+  
 
 
   useEffect(() => {

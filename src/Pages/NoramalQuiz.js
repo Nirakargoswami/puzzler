@@ -7,12 +7,17 @@ import QuizRecommendation from "../Component/RECEOMEND/RECEmend"
 import "./ansqusionpage.css"
 import { Button, Box, CircularProgress, LinearProgress, Typography } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import CommentIcon from '@mui/icons-material/Comment';
+import ListItemText from '@mui/material/ListItemText';
+
 import BarChartIcon from '@mui/icons-material/BarChart';
 import ShareIcon from '@mui/icons-material/Share';
 const NormalQuiz = () => {
@@ -27,21 +32,17 @@ const NormalQuiz = () => {
     const [Mainuser, setMainuser] = useState()
     const [color, setColor] = useState()
     const [open, setOpen] = useState(false);
-    const [run,setrun] = useState(true)
-    const [Quizeee,setQuizzes] = useState()
-    const [remainingTime, setRemainingTime] = useState(30); // Initialize timer with 30 seconds
+    const [run, setrun] = useState(true)
+    const [Quizeee, setQuizzes] = useState()
+    const [remainingTime, setRemainingTime] = useState(1000); // Initialize timer with 30 seconds
     const [copied, setCopied] = useState(false);
     const params = useParams();
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const [opens, setOpens] = useState(false);
+
     const size = useWindowSize();
 
-   
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+
 
     const Color = ["#2979ff", "#ff5722", "#bc186b", "651fff", "#d500f9", "#e91e63", "#3d5afe", "#9c27b0"]
 
@@ -52,14 +53,8 @@ const NormalQuiz = () => {
         setColor(Color[No])
     }
 
+   
 
-    useEffect(() => {
-
-        if (params.quizname) {
-            handleEdit(params.quizname)
-            console.log(params.quizname)
-        }
-    }, [params.quizname])
 
     useEffect(() => {
         let timer;
@@ -95,7 +90,7 @@ const NormalQuiz = () => {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
     }, [remainingTime])
- 
+
     const fethdata = async () => {
         try {
             const apiUrl = "https://writers.explorethebuzz.com/api/quizzes?filters[for][$eq]=Nirakar&fields[0]=name&fields[1]=slug&fields[2]=rank&populate[thumbnail][fields][0]=url&pagination[page]=1&pagination[pageSize]=10";
@@ -120,10 +115,32 @@ const NormalQuiz = () => {
     }
 
     useEffect(() => {
-        handleEdit(params.quizname)
-        
-    }, [params.quizname])
 
+        console.log(params.quizname, "kfmadsfka")
+        if (gameOver) {
+            setGameover(false)
+            setStart(false)
+            setOpen(false)
+            setColor()
+            setCopied(false)
+            setCurrentQuestionIndex(0)
+            setSelectedOption(null)
+            setquestionsArray([])
+            setName()
+            setScore(0)
+            setNames()
+            setRemainingTime(30)
+            handleEdit(params.quizname)
+        } else {
+            handleEdit(params.quizname)
+        }
+    }, [params.quizname])
+    const handleClose = () => {
+        setOpens(false);
+    };
+    const handleClickOpen = () => {
+        setOpens(true);
+    };
     const handleEdit = async (name) => {
         try {
             const apiUrl = `https://writers.explorethebuzz.com/api/quizzes/${name}`;
@@ -186,17 +203,17 @@ const NormalQuiz = () => {
                 === true) {
                 setScore(score + 1);
             }
-            
+
             setGameover(true)
-            fethdata()
+            setrun(true)
             setTimeout(() => {
                 setrun(false)
-            },5000)
+            }, 5000)
             console.log("log out")
             return
-        } 
+        }
 
-        if (questionsArray && questionsArray.qna
+        if (selectedOption && questionsArray && questionsArray.qna
         [currentQuestionIndex].options[selectedOption].correct
             === true) {
             setScore(score + 1);
@@ -207,10 +224,10 @@ const NormalQuiz = () => {
         randomNumberColor()
         setCurrentQuestionIndex(currentQuestionIndex + 1);
     };
-   
+
     const copyToClipboard = () => {
         const textArea = document.createElement('textarea');
-        textArea.value = `https://mindpuzzlers.com/NormalQuiz/${params.quizname}`
+        textArea.value = `https://mindpuzzlers.gangsofgamer.com/${params.quizname}`
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand('copy');
@@ -218,7 +235,7 @@ const NormalQuiz = () => {
         setCopied(true);
     };
     const handleShareOnWhatsApp = () => {
-        const link = `https://mindpuzzlers.com//NormalQuiz/${params.quizname}`; // Replace with your actual link
+        const link = `https://mindpuzzlers.gangsofgamer.com/${params.quizname}`; // Replace with your actual link
 
         // Construct the WhatsApp URL
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(link)}`;
@@ -226,8 +243,12 @@ const NormalQuiz = () => {
         // Redirect to WhatsApp
         window.location.href = whatsappUrl;
     };
-    console.log(questionsArray)
-    const progress = ((currentQuestionIndex + 1) / questionsArray && questionsArray.length) * 100;
+    const Gototheinstageam = () => {
+        const instagramUrl = `https://www.instagram.com/`;
+    
+        // Open the Instagram profile URL in a new tab or window
+        window.open(instagramUrl, '_blank');
+      }
 
     return (
         <>
@@ -238,19 +259,60 @@ const NormalQuiz = () => {
                 gameOver &&
                 <><main className='Home_main__nLjiQ '>
 
-                                       {run && <Confetti
-                        width={size.width}
-                        height={size.height}
-                        
-                        run={run}
 
-                    />}
-                    
-                    {Quizeee && 
-                     <QuizRecommendation quizData={Quizeee && Quizeee} />}
+
+
+                    <QuizRecommendation />
+                   
                     <div className="css-vg5ilo">Your score: <br />
                         {score} out of {questionsArray.qna.length}
                     </div>
+                    {opens &&
+                        <div>
+
+                            <Dialog
+                                open={opens}
+
+                                keepMounted
+                                onClose={handleClose}
+                                aria-describedby="alert-dialog-slide-description"
+                            >
+                                <DialogTitle style={{ textAlign: "center" }}>{"Add To Your Instagram"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-slide-description">
+                                        <List>
+                                            <ListItem>
+                                                <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`Go into Your Instagram `} />
+                                            </ListItem>
+                                            <ListItem>
+                                                <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`tap the "Edit Profile" button`} />
+                                            </ListItem>
+                                            <ListItem>
+                                                <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`Add Your Link To Website Link" field`} />
+                                            </ListItem>
+                                            <ListItem>
+                                                <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`Save Changes`} />
+                                            </ListItem>
+
+                                        </List>
+
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={handleClose}>Close</Button>
+                                    <Button style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={() => Gototheinstageam()}>Goto the Instagram</Button>
+                                </DialogActions>
+                            </Dialog>
+                        </div>
+
+                    }
+                     {run && <Confetti
+                        width={size.width}
+                        height={size.height}
+
+                        run={run}
+
+                    />}
                     <div className='css-1e0mhkg '>
                         <div className='css-1x61a8'>
                             <div className='css-cu0uac '>
@@ -259,11 +321,13 @@ const NormalQuiz = () => {
                                 Share your Quiz link with all your friends and see their results.
                             </div>
                             <div className='css-19nn44a'>
-                                <input className='Input' value={`https://mindpuzzlers.com/NormalQuiz/${params.quizname}`} />
+                                <input className='Input' value={`https://mindpuzzlers.gangsofgamer.com/${params.quizname}`} />
 
                                 <Button className='Witdh' style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Copy Link</Button>
                                 {copied && <p>Copied to clipboard!</p>}
                                 <Button className='Witdh' style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={handleShareOnWhatsApp}>Send Quiz In whatsapp</Button>
+                                <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={() => setOpens(true)}>Add In Instagram Bio</Button>
+
                                 {/* <Button className='Witdh' style={{ backgroundColor: "#E53E3E", color: "white", marginTop: "10px" }} onClick={copyToClipboard}>Add In Instagram Bio</Button> */}
 
 
