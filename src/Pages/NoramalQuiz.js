@@ -53,7 +53,7 @@ const NormalQuiz = () => {
         setColor(Color[No])
     }
 
-   
+
 
 
     useEffect(() => {
@@ -78,9 +78,8 @@ const NormalQuiz = () => {
 
     useEffect(() => {
         if (remainingTime < 2 && Start) {
-            console.log("remainingTime")
-            console.log(selectedOption && questionsArray.qna[currentQuestionIndex].options[selectedOption].correct)
-            if (selectedOption && questionsArray.qna[currentQuestionIndex].options[selectedOption].correct === true) {
+           
+            if ((selectedOption !== null) && questionsArray.qna[currentQuestionIndex].options[selectedOption].correct === true) {
                 setScore(score + 1);
             }
             setSelectedOption(null)
@@ -213,16 +212,23 @@ const NormalQuiz = () => {
             return
         }
 
-        if (selectedOption && questionsArray && questionsArray.qna
-        [currentQuestionIndex].options[selectedOption].correct
-            === true) {
-            setScore(score + 1);
+       
+        if ((selectedOption !== null) && questionsArray && questionsArray.qna
+        [currentQuestionIndex].options[selectedOption].correct) {
+            console.log(score)
+            setScore((x) => x + 1);
+            setSelectedOption(null)
+            setRemainingTime(30)
+            randomNumberColor()
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+        }else{
+            setSelectedOption(null)
+            setRemainingTime(30)
+            randomNumberColor()
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
 
-        setSelectedOption(null)
-        setRemainingTime(30)
-        randomNumberColor()
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
+
     };
 
     const copyToClipboard = () => {
@@ -245,10 +251,10 @@ const NormalQuiz = () => {
     };
     const Gototheinstageam = () => {
         const instagramUrl = `https://www.instagram.com/`;
-    
+
         // Open the Instagram profile URL in a new tab or window
         window.open(instagramUrl, '_blank');
-      }
+    }
 
     return (
         <>
@@ -263,7 +269,7 @@ const NormalQuiz = () => {
 
 
                     <QuizRecommendation />
-                   
+
                     <div className="css-vg5ilo">Your score: <br />
                         {score} out of {questionsArray.qna.length}
                     </div>
@@ -306,7 +312,7 @@ const NormalQuiz = () => {
                         </div>
 
                     }
-                     {run && <Confetti
+                    {run && <Confetti
                         width={size.width}
                         height={size.height}
 
@@ -375,10 +381,9 @@ const NormalQuiz = () => {
                             </div>}
 
                         <div className="Box Gmestabox css-cu0uac ">
-                            <h2 className="Box css-cu0uac ">What is your Name </h2>
-                            <input className="css-1u1dnir " onChange={(e) => setNames(e.target.value)}>
 
-                            </input>
+
+
 
                             <Button variant="contained" style={{ backgroundColor: "rgb(254, 44, 84)", width: "100%" }} className="button" onClick={() => setStart(true)}>  Get Started</Button>
                         </div>

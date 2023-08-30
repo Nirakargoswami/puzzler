@@ -99,7 +99,7 @@ const Home = () => {
                                                     </span>
                                                     <div className="css-1dm2hj8">
 
-                                                        <h3 className="Mark" style={{ color: "black", fontSize: "22px", margin: "0px" }}>{x.name}</h3>
+                                                        <h3 className="NewMark" style={{ color: "black", fontSize: "22px", margin: "0px" }}>{x.name}</h3>
                                                     </div>
                                                 </span>
                                             </div>
