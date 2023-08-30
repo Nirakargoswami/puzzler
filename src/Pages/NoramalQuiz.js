@@ -34,7 +34,7 @@ const NormalQuiz = () => {
     const [open, setOpen] = useState(false);
     const [run, setrun] = useState(true)
     const [Quizeee, setQuizzes] = useState()
-    const [remainingTime, setRemainingTime] = useState(1000); // Initialize timer with 30 seconds
+    const [remainingTime, setRemainingTime] = useState(30); // Initialize timer with 30 seconds
     const [copied, setCopied] = useState(false);
     const params = useParams();
     const [opens, setOpens] = useState(false);

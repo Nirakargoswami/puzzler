@@ -22,6 +22,7 @@ export const MainQuizquestion =
   couple:
     [
       { question: 'What is your favorite TV show?', options: ['Anupamaa', 'Yeh Rishta Kya Kehlata Hai', 'Yeh Hai Chahatein', 'Taarak Mehta Ka Ooltah Chashmah'] },
+      
       { question: 'What is your dream holiday?', options: ['A trip to Maldives', 'Camping in the forest', 'Touring the country', 'Lying on an exotic beach'] },
       { question: 'What is afraid of the most you?', options: ['Speed Racing', 'Spiders', 'Lizard', 'Lightning strikes'] },
       {

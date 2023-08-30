@@ -88,3 +88,28 @@
 [debug] [2023-08-30T01:17:40.440Z] [uploadQueue] Retrying task 12536cfa2fb40d56dade0fb205228afc3e77a08228be69d30f3fe5ce8b654e9b
 [debug] [2023-08-30T01:17:40.442Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/wordle-99fb9/versions/1f4b38df6e2f58be/files/12536cfa2fb40d56dade0fb205228afc3e77a08228be69d30f3fe5ce8b654e9b [none]
 [debug] [2023-08-30T01:17:40.442Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/wordle-99fb9/versions/1f4b38df6e2f58be/files/12536cfa2fb40d56dade0fb205228afc3e77a08228be69d30f3fe5ce8b654e9b [stream]
+[debug] [2023-08-30T01:31:59.505Z] ----------------------------------------------------------------------
+[debug] [2023-08-30T01:31:59.509Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2023-08-30T01:31:59.509Z] CLI Version:   12.4.8
+[debug] [2023-08-30T01:31:59.510Z] Platform:      darwin
+[debug] [2023-08-30T01:31:59.510Z] Node Version:  v18.12.1
+[debug] [2023-08-30T01:31:59.512Z] Time:          Wed Aug 30 2023 07:01:59 GMT+0530 (India Standard Time)
+[debug] [2023-08-30T01:31:59.512Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-30T01:31:59.633Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-30T01:31:59.634Z] > authorizing via signed-in user (goswaminirakar65@gmail.com)
+[debug] [2023-08-30T01:31:59.634Z] [iam] checking project wordle-99fb9 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-08-30T01:31:59.639Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/wordle-99fb9:testIamPermissions [none]
+[debug] [2023-08-30T01:31:59.640Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/wordle-99fb9:testIamPermissions x-goog-quota-user=projects/wordle-99fb9
+[debug] [2023-08-30T01:31:59.640Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/wordle-99fb9:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-08-30T01:32:15.029Z] *** [apiv2] error from fetch(https://cloudresourcemanager.googleapis.com/v1/projects/wordle-99fb9:testIamPermissions, {"headers":{},"method":"POST","body":"{\"permissions\":[\"firebase.projects.get\",\"firebasehosting.sites.update\"]}"}): FetchError: request to https://cloudresourcemanager.googleapis.com/v1/projects/wordle-99fb9:testIamPermissions failed, reason: socket hang up
+[debug] [2023-08-30T01:32:15.031Z] [iam] error while checking permissions, command may fail: FirebaseError: Failed to make request to https://cloudresourcemanager.googleapis.com/v1/projects/wordle-99fb9:testIamPermissions
+[debug] [2023-08-30T01:32:15.033Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wordle-99fb9 [none]
+[debug] [2023-08-30T01:32:45.034Z] *** [apiv2] error from fetch(https://firebase.googleapis.com/v1beta1/projects/wordle-99fb9, {"headers":{},"method":"GET","signal":{}}): AbortError: The user aborted a request.
+[debug] [2023-08-30T01:32:45.034Z] Timeout reached making request to https://firebase.googleapis.com/v1beta1/projects/wordle-99fb9 (original: The user aborted a request.)
+[debug] [2023-08-30T01:32:50.045Z] Error: Timed out.
+    at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/utils.js:254:49)
+    at listOnTimeout (node:internal/timers:564:17)
+    at process.processTimers (node:internal/timers:507:7)
+[error] 
+[error] Error: An unexpected error has occurred.
