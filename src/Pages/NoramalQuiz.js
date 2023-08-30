@@ -227,7 +227,7 @@ const NormalQuiz = () => {
 
     const copyToClipboard = () => {
         const textArea = document.createElement('textarea');
-        textArea.value = `https://mindpuzzlers.gangsofgamer.com/${params.quizname}`
+        textArea.value = `https://mindpuzzlers.gangsofgamer.com/NormalQuiz/${params.quizname}`
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand('copy');
@@ -235,7 +235,7 @@ const NormalQuiz = () => {
         setCopied(true);
     };
     const handleShareOnWhatsApp = () => {
-        const link = `https://mindpuzzlers.gangsofgamer.com/${params.quizname}`; // Replace with your actual link
+        const link = `https://mindpuzzlers.gangsofgamer.com/NormalQuiz/${params.quizname}`; // Replace with your actual link
 
         // Construct the WhatsApp URL
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(link)}`;
