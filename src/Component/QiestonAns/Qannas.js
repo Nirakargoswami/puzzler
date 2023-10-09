@@ -20,8 +20,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 
 import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-const QuestionEditor = ({ data, name, type }) => {
-  console.log("its working ", data)
+const QuestionEditor = ({ data, name, Hindi, type }) => {
   // Step 2: Set up the component's state
   const [questions, setQuestions] = useState();
   const [loading, setLoading] = useState(false);
@@ -72,7 +71,6 @@ const QuestionEditor = ({ data, name, type }) => {
   function handleRemoveQuestion(questionIndex) {
     const newQuestions = [...questions];
     newQuestions.splice(questionIndex, 1);
-    console.log(newQuestions)
     setQuestions(newQuestions);
   }
 
@@ -147,12 +145,10 @@ const QuestionEditor = ({ data, name, type }) => {
   }, [questions])
   // Step 5: Implement the handleSubmit function
   function handleSubmit() {
-    console.log('Submitted data:', questions);
     setLoading(true)
     const Ans = Creatuser(questions, name, type)
     if (Ans) {
       Ans.then((x) => {
-        console.log(x)
         setID(x)
         setShowShairLink(true)
         setLoading(false)
@@ -217,14 +213,21 @@ const QuestionEditor = ({ data, name, type }) => {
         <main className='Home_main__nLjiQ '>
           <div className='css-1e0mhkg '>
             <div className='css-1x61a8'>
+              
+             { Hindi ?
+              <div className='css-cu0uac '>
+                आपका क्विज़ तैयार है!
+                <br />
+                अपने सभी दोस्तों के साथ अपने क्विज़ का लिंक साझा करें और देखें कि वे आपके बारे में कितना जानते हैं।              </div>
+              :
               <div className='css-cu0uac '>
                 Your Quiz is ready!
                 <br />
                 Share your Quiz link with all your friends and see their results.
-              </div>
+              </div>}
               {open &&
                 <div>
-                  
+
                   <Dialog
                     open={open}
 
@@ -232,30 +235,30 @@ const QuestionEditor = ({ data, name, type }) => {
                     onClose={handleClose}
                     aria-describedby="alert-dialog-slide-description"
                   >
-                    <DialogTitle style={{textAlign:"center"}}>{"Add To Your Instagram"}</DialogTitle>
+                    <DialogTitle style={{ textAlign: "center" }}>{"Add To Your Instagram"}</DialogTitle>
                     <DialogContent>
                       <DialogContentText id="alert-dialog-slide-description">
                         <List>
-                        <ListItem>
-                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`Go into Your Instagram `} />
+                          <ListItem>
+                            <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`Go into Your Instagram `} />
                           </ListItem>
                           <ListItem>
-                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`tap the "Edit Profile" button`} />
+                            <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`tap the "Edit Profile" button`} />
                           </ListItem>
                           <ListItem>
-                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`Add Your Link To Website Link" field`} /> 
+                            <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`Add Your Link To Website Link" field`} />
                           </ListItem>
                           <ListItem>
-                          <CommentIcon style={{marginRight:"10px"}} /> <ListItemText primary={`Save Changes`} /> 
+                            <CommentIcon style={{ marginRight: "10px" }} /> <ListItemText primary={`Save Changes`} />
                           </ListItem>
 
-                          </List>
-                         
+                        </List>
+
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                      <Button  style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }}onClick={handleClose}>Close</Button>
-                      <Button  style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={() => Gototheinstageam()}>Goto the Instagram</Button>
+                      <Button style={{ backgroundColor: "#FE2C54", color: "white", marginTop: "10px" }} onClick={handleClose}>Close</Button>
+                      <Button style={{ backgroundColor: "#22c35e", color: "white", marginTop: "10px" }} onClick={() => Gototheinstageam()}>Goto the Instagram</Button>
                     </DialogActions>
                   </Dialog>
                 </div>

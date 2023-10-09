@@ -59,7 +59,7 @@ const googleProvider = new GoogleAuthProvider();
 
 
 const Creatuser = async (data,name,type) => {
-    // console.log(name)
+    // //console.log(name)
     const q = query(collection(db, "Quizmingle"));
     const querySnapshot = await getDocs(q);
     let user
@@ -67,7 +67,7 @@ const Creatuser = async (data,name,type) => {
         {data,name,type}
     )
     const newDocId = docRef.id
-    console.log(newDocId, "Document Created")
+    //console.log(newDocId, "Document Created")
     return newDocId
 }
 const Getuserdata = async (id) => {
@@ -76,10 +76,10 @@ const Getuserdata = async (id) => {
     
     if (retrievedDocSnapshot.exists()) {
       const retrievedData = retrievedDocSnapshot.data();
-      console.log("Retrieved Data:", retrievedData);
+      //console.log("Retrieved Data:", retrievedData);
       return retrievedData
     } else {
-      console.log("Document not found");
+      //console.log("Document not found");
     }
 }
 const HandleImageUpdload = async (event) => {
@@ -88,7 +88,7 @@ const HandleImageUpdload = async (event) => {
     await uploadBytes(storageRef, file);
     const downloadURL = await getDownloadURL(storageRef);
 return downloadURL
-    console.log('Image uploaded successfully');
+    //console.log('Image uploaded successfully');
   };
 
   const retrieveImage = async (imageName) => {

@@ -38,7 +38,6 @@ const QuizRecommendation = () => {
   };
 
 
-  console.log(datas);
 
   return (
     <>

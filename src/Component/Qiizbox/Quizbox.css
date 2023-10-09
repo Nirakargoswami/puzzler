@@ -6,15 +6,17 @@
 }
 
 .css-vr61ey {
-    display: grid;
-    gap: 35px;
-    grid-template-columns: repeat(2, minmax(0px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: SPACE-BETWEEN;
+    align-items: center;
 }
 
 .css-sdqkp0 {
+    margin-bottom: 15px;
     border: 3px solid rgb(7, 222, 182);
     border-radius: 10px;
-    width: 100%;
+    width: 159px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -26,8 +28,7 @@
 
 .Photo {
     height: 152px;
-    width: 137px;
-    border-radius: 50%;
+    width: 153px;
 
 }
 

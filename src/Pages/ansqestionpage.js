@@ -54,7 +54,7 @@ const QuizApp = () => {
         if (params.quiId) {
             const getData = Getuserdata(params.quiId)
             getData.then((x) => {
-                console.log((x))
+                //console.log((x))
                 setquestionsArray(x)
             })
             Fetsh();
@@ -91,12 +91,12 @@ const QuizApp = () => {
                             friendScore: updatedFriendScores
                         });
                     } else {
-                        console.log("User document not found");
+                        //console.log("User document not found");
                     }
                 })
                 .then(() => {
                     Fetsh(); // Update friend scores after updating the score
-                    console.log('Friend score updated successfully');
+                    //console.log('Friend score updated successfully');
                 })
                 .catch((error) => {
                     console.error('Error updating friend score:', error);
@@ -122,7 +122,7 @@ const QuizApp = () => {
         if (userDocSnapshot.exists()) {
             const userData = userDocSnapshot.data();
             const friendScoresData = userData.friendScore || [];
-            console.log(friendScoresData)
+            //console.log(friendScoresData)
             // Assuming the array of friends is named 'friends'
             setFriendScores(friendScoresData);
         }

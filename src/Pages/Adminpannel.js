@@ -214,7 +214,7 @@ const QuestionEditor = () => {
 
     const Quizeimage = (event) => {
         const imageFile = event.target.files[0]
-        console.log(imageFile.name)
+        //console.log(imageFile.name)
 
         setquizeiamge(imageFile.name)
         const imageurl = retrieveImage(imageFile.name)
@@ -281,7 +281,7 @@ const QuestionEditor = () => {
         // const imageQuestions = questions.filter((q) => q.question.startsWith('[IMAGE]'));
 
         // Handle text questions (send to server, etc.)
-        // console.log('Text Questions:', textQuestions);
+        // //console.log('Text Questions:', textQuestions);
 
         // Handle image questions (upload images, etc.)
         // for (const imageQuestion of imageQuestions) {
@@ -291,11 +291,11 @@ const QuestionEditor = () => {
         //     // For example, using Firebase Storage:
         //     // const imageUrl = await uploadImageToStorage(imageFile);
 
-        //     // console.log('Image URL:', imageUrl);
+        //     // //console.log('Image URL:', imageUrl);
         // }
 
         if (questions.length === 0) {
-            console.log("No questions to submit.");
+            //console.log("No questions to submit.");
             return;
         }
 
@@ -314,13 +314,13 @@ const QuestionEditor = () => {
                 if (quizDocSnapshot.exists()) {
                     // Update the quiz data
 
-                    console.log(quizDocRef)
+                    //console.log(quizDocRef)
                     // Save the updated quiz data back to 'quizedata' collection
                     await updateDoc(quizDocRef, { data: quizData, name: quizName, Image: allquizdata.Image, quizeimgeurl: allquizdata.quizeimgeurl });
 
-                    console.log('Quiz data updated successfully.');
+                    //console.log('Quiz data updated successfully.');
                 } else {
-                    console.log("Quiz data not found for updating.");
+                    //console.log("Quiz data not found for updating.");
                 }
 
                 return;
@@ -332,17 +332,17 @@ const QuestionEditor = () => {
             const quizDocRef = doc(db, "quizedata", quizName.split(" ").join(""));
             await setDoc(quizDocRef, { data: quizData, name: quizName, Image: quizeiamge, quizeimgeurl: Imageurl });
 
-            console.log('Quiz data submitted successfully.');
+            //console.log('Quiz data submitted successfully.');
             // You can also show success messages or perform other actions here.
         } catch (error) {
             console.error('Error submitting quiz data:', error);
         }
-        console.log('Submitted data:', questions);
+        //console.log('Submitted data:', questions);
         // setLoading(true)
         // const Ans = Creatuser(questions)
         // if (Ans) {
         //   Ans.then((x) => {
-        //     console.log(x)
+        //     //console.log(x)
         //     setID(x)
         //     setShowShairLink(true)
         //     setLoading(false)

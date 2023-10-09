@@ -64,7 +64,7 @@ const NormalQuiz = () => {
                 if (remainingTime > 1) {
                     setRemainingTime(remainingTime - 1);
                 } else {
-                    console.log("fasdfafa")
+                    //console.log("fasdfafa")
                     handleNextClick(); // Move to the next question when time is up
                 }
             }, 1000); // Update timer every second
@@ -97,7 +97,7 @@ const NormalQuiz = () => {
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data); // You can process the data here
+                    //console.log(data); // You can process the data here
                     setQuizzes(data);
                 })
                 .catch(error => {
@@ -106,7 +106,7 @@ const NormalQuiz = () => {
 
             // const quizzesSnapshot = await getDocs(collection(db, "quiznames"));
             // const quizzesData = quizzesSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-            // console.log(quizzesData)
+            // //console.log(quizzesData)
             // setQuizzes(quizzesData);
         } catch (error) {
             console.error('Error fetching quizzes:', error);
@@ -115,7 +115,7 @@ const NormalQuiz = () => {
 
     useEffect(() => {
 
-        console.log(params.quizname, "kfmadsfka")
+        //console.log(params.quizname, "kfmadsfka")
         if (gameOver) {
             setGameover(false)
             setStart(false)
@@ -140,6 +140,8 @@ const NormalQuiz = () => {
     const handleClickOpen = () => {
         setOpens(true);
     };
+    
+    
     const handleEdit = async (name) => {
         try {
             const apiUrl = `https://writers.explorethebuzz.com/api/quizzes/${name}`;
@@ -174,13 +176,13 @@ const NormalQuiz = () => {
             // const quizDataSnapshot = await getDoc(quizDataRef);
             // if (quizDataSnapshot.exists()) {
             //     const retrievedData = quizDataSnapshot.data();
-            //     console.log(retrievedData.data)
+            //     //console.log(retrievedData.data)
             //     setquestionsArray(retrievedData.data);
-            //     console.log(retrievedData.data)
+            //     //console.log(retrievedData.data)
 
             //     setName(retrievedData.name)
             // } else {
-            //     console.log("Quiz data not found");
+            //     //console.log("Quiz data not found");
             //     setSelectedQuizData(null);
             // }
         } catch (error) {
@@ -208,14 +210,14 @@ const NormalQuiz = () => {
             setTimeout(() => {
                 setrun(false)
             }, 5000)
-            console.log("log out")
+            //console.log("log out")
             return
         }
 
        
         if ((selectedOption !== null) && questionsArray && questionsArray.qna
         [currentQuestionIndex].options[selectedOption].correct) {
-            console.log(score)
+            //console.log(score)
             setScore((x) => x + 1);
             setSelectedOption(null)
             setRemainingTime(30)

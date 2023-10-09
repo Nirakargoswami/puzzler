@@ -13,7 +13,7 @@ const Quizbox = ({ data }) => {
             {
                 data.map((x) => {
                     return (
-                        <Link style={{textDecoration:"none"}} to={`/quizpage/${x.name === "Best friend Quiz" ? "friend" : x.name === "couple Quiz" ? "couple" :x.name   }`}>
+                        <Link style={{textDecoration:"none"}} to={`/quizpage/${x.name === "Best friend Quiz" ? "friend" : x.name === "couple Quiz" ? "couple" :x.name === "" ? "Freefire" : x.name    }`}>
                             <div className="css-sdqkp0">
                               
 

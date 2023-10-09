@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Home from "./Pages/Home";
 import Quizpage from "./Pages/quizpage";
+import Live from "./Pages/Livequiz"
 import {
   BrowserRouter as Router,
   Routes,
@@ -9,6 +10,8 @@ import {
   Form,
   d,
 } from "react-router-dom";
+import Blogposdt from "./Pages/Blogpost"
+import CompetitionsPage from "./Pages/Compatationpage"
 import AdsComponent from "../src/Component/Addsence /Addsence";
 import TermsOfService from "../src/Pages/Teremuse";
 import Aboutuse from "../src/Pages/Aboutus";
@@ -41,7 +44,7 @@ function App() {
         }}
       >
       
-      <AdsComponent dataAdSlot='X7XXXXXX5X' />
+      <AdsComponent />
         <ResponsiveDrawer />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -53,6 +56,11 @@ function App() {
           <Route path="/Legal" element={<Privasy />} />
           <Route path="/About Us" element={<Aboutuse />} />
           <Route path="/Tearms Of Use" element={<TermsOfService />} />
+          <Route path="/Live/:quiId" element={<Live/>} />
+          <Route path="/CompetitionsPage" element={<CompetitionsPage/>} />
+          <Route path="/Blogposdt/:Blogid" element={<Blogposdt/>} />
+
+          
         </Routes>
       </div>
     </>

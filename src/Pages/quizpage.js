@@ -9,8 +9,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import "./Home.css"
 import Slide from '@mui/material/Slide';
-import { MainQuizquestion } from "../Constatant/constatn"
+import { MainQuizquestion, MainQuizquestionHindi } from "../Constatant/constatn"
 import { PreshowofQuiz } from "../Constatant/constatn"
 const quizpage = () => {
     const [data, setdata] = useState()
@@ -20,6 +21,8 @@ const quizpage = () => {
     const [Error, setError] = useState()
     const [Howtopaly, setHowtopaly] = useState(true)
     const [open, setOpen] = useState(false);
+    const [Hindi, setHindi] = useState(false)
+
 
 
 
@@ -32,7 +35,7 @@ const quizpage = () => {
     };
 
     const params = useParams();
-    console.log(params)
+    //console.log(params)
 
     const GEtstart = () => {
         if (name) {
@@ -49,10 +52,10 @@ const quizpage = () => {
 
     useEffect(() => {
 
-        setdata(MainQuizquestion[params.quizname])
+        setdata(Hindi ? MainQuizquestionHindi[params.quizname] : MainQuizquestion[params.quizname])
         setPredata(PreshowofQuiz[params.quizname])
-    }, [])
-    console.log(PreshowofQuiz, MainQuizquestion)
+    }, [Hindi])
+    //console.log(PreshowofQuiz, MainQuizquestion)
 
     return (
         <div >
@@ -81,11 +84,11 @@ const quizpage = () => {
                             <h1 className="Marks">Create Your Quiz</h1>
                             <p>In the quiz, you can write down your own questions,</p>
                             <p> and then you can send that quiz to your friend or partner to see how much they know about you.</p>
-                            <br/>
+                            <br />
 
                         </div>
                         <DialogActions>
-                            <Button  variant="contained" onClick={handleClose}>Close</Button>
+                            <Button variant="contained" onClick={handleClose}>Close</Button>
 
                         </DialogActions>
                     </Dialog>
@@ -93,7 +96,14 @@ const quizpage = () => {
 
                     <Button variant="contained" onClick={
                         handleClickOpen} style={{ backgroundColor: "rgb(254, 44, 84)", width: "40%" }} className="button" >How To Play </Button>
-
+                         <h3>Quiz Language</h3>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "-5px" }}>
+                       
+                        <Button variant="contained" onClick={() => setHindi(false)} style={{ backgroundColor: "rgb(254, 44, 84)", width: "40%" }} className={`button ${Hindi ? '' : 'selected-button'}`}
+                        >English</Button>
+                        <Button variant="contained" onClick={() => setHindi(true)} style={{ backgroundColor: "rgb(254, 44, 84)", width: "40%" }} className={`button ${Hindi ? 'selected-button' : ''}`}
+                        >Hindi</Button>
+                    </div>
                     <h3 className="Box Mainfor">{Predata.question}</h3>
                     <div className="Box Gmestabox css-cu0uac ">
                         <h2 className="Box css-cu0uac ">What is your Name </h2>
@@ -113,7 +123,7 @@ const quizpage = () => {
             }
 
             {data && show &&
-                <QuestionEditor data={data && data} name={name && name} type={params.quizname && params.quizname} />}
+                <QuestionEditor Hindi={Hindi} data={data && data} name={name && name} type={params.quizname && params.quizname} />}
         </div>
     )
 }

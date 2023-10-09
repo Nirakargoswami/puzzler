@@ -31,13 +31,11 @@ const QuizTable = ({setQuestions,setName,setMainimag,setImageurl,handleClose,set
     try {
       // Delete the quiz name document
       await deleteDoc(doc(db, "quiznames", id));
-      console.log('Quiz name deleted successfully.');
 
       // Delete the corresponding quiz data using the name
       const quizDataRef = doc(db, "quizedata", name);
       await deleteDoc(quizDataRef);
       alert("Quiz data deleted successfully.")
-      console.log('Quiz data deleted successfully.');
 
       fetchQuizzes();
     } catch (error) {
@@ -51,7 +49,6 @@ const QuizTable = ({setQuestions,setName,setMainimag,setImageurl,handleClose,set
       const quizDataSnapshot = await getDoc(quizDataRef);
       if (quizDataSnapshot.exists()) {
         const retrievedData = quizDataSnapshot.data();
-       console.log(retrievedData)
         setQuestions(retrievedData.data);
         setName(retrievedData.name)
         setMainimag(retrievedData.quizeimgeurl)
@@ -59,7 +56,6 @@ const QuizTable = ({setQuestions,setName,setMainimag,setImageurl,handleClose,set
         setallquizdata(retrievedData)
         handleClose()
       } else {
-        console.log("Quiz data not found");
         setSelectedQuizData(null);
       }
     } catch (error) {

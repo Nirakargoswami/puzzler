@@ -79,7 +79,7 @@ const initialState = {
 
 export default function (state = initialState, action){
     const { type, payload } = action;
-    console.log(payload)
+    //console.log(payload)
     switch (type) {
         case PRODUCT_DATA:
             return {

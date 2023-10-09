@@ -16,7 +16,6 @@ const ImageUpload = () => {
 
       reader.onload = (e) => {
         const fileContent = e.target.result;
-        console.log('File content:', fileContent);
    
         // You can perform further actions with the file content here
       };
